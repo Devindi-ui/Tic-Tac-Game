@@ -147,3 +147,60 @@ body{
 .score-item:nth-child(3) span:first-child::before{
     content: '⚔️ ';
 }
+
+.game-board{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px auto;
+    background: linear-gradient(135deg, #ff6b9d,#4ecdc4);
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+    max-width: 358px;
+}
+
+.cell{
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #ffffff, #f8f9ff);
+    border: 3px solid #ff6b9d;
+    border-radius: 15px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.2);
+    transition: all 0.3 ease;
+}
+
+.cell:hover{
+    background: linear-gradient(135deg, #fff5f8, #f0f9ff);
+    border-color: #4ecdc4;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+}
+
+.cell:disabled{
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.cell.x{
+    color: #ff6b35;
+    border-color: #ff6b35;
+    text-shadow: 2px 2px 4px rgba(255,107,53,0.3);
+    background: linear-gradient(135deg, #ffebe6, #fff0e6);
+}
+
+.cell.o{
+    color: #4ecdc4;
+    border-color: #4ecdc4;
+    text-shadow: 2px 2px 4px rgba(255,107,53,0.3);
+    background: linear-gradient(135deg, #e6fffe, #f0ffff);
+}
