@@ -313,7 +313,42 @@ function highlightWinningCells(){
 
 }
 
+document.addEventListener('keydown', function(event){
+    //Press 'R' to reset game
+    if(event.key.toLowerCase() === 'r'){
+        resetGame();
+    }
+
+    //press 1-9 to make moves
+    if(currentPlayer === 'X' && gameActive){
+        const num = parseInt(event.key);
+        if(num >= 1 && num <= 9) {
+            //convert number to row/col combination
+            //1,2,3 = row 0; 4,5,6 = row 1; 7,8,9 = row 2
+
+            const row = Math.floor((num-1)/3);
+            const col = (num - 1) % 3;
+
+            const cellElement = this.documentElement.querySelector
+            (`[data-row="${row}"][data-col="${col}"]`);
+
+            if(cellElement && board[row][col] === '') {
+                handleCellClick(row, col, cellElement);
+            }
+        }
+    }
+
+});
+
 document.addEventListener('DOMContentLoaded', function(){
     initializeGame();
     resetBtn.addEventListener('click', resetGame);
+
+    const helptext = this.documentElement.createElement('div');
+    helptext.innerHTML = `
+        <small style="color: #666; margin-top: 10px; display: block;">
+            Use numbers 1-9 to play, 'R' to reset
+        </small>
+    `;
+    this.documentElement.querySelector('.game-controls').appendChild(helptext);
 });
