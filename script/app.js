@@ -254,9 +254,64 @@ function checkGameEnd(){
 }
 
 function highlightWinningCells(){
-    
-}
+    //check row winning combination
+    for (let row = 0; row < 3; row++) {
+        if (board[row][0] !== '' &&
+            board[row][0] === board[row][1] &&
+            board[row][1] === board[row][2]
+        ) {
+            for (let col = 0; col < 3; col++) {
+                const cell = document.querySelector
+                (`[data-row="${row}"][data-col="${col}"]`);
+                cell.classList.add('winner');
+            }
+            return;
+        }
+    }
 
+    //check col winning combination
+    for (let col = 0; col < 3; col++) {
+        if (board[0][col] !== '' &&
+            board[0][col] === board[1][col] &&
+            board[1][col] === board[2][col]
+        ) {
+            for (let row = 0; row < 3; row++) {
+                const cell = document.querySelector
+                (`[data-row="${row}"][data-col="${col}"]`);
+                cell.classList.add('winner');
+            }
+            return;
+        }
+    }
+
+    //check diagonals
+    if (board[0][0] !== '' &&
+        board[0][0] === board[1][1] &&
+        board[1][1] === board[2][2]
+    ) {
+        for (let i = 0; i < 3; i++) {
+            const cell = document.querySelector
+                (`[data-row="${i}"][data-col="${i}"]`);
+            cell.classList.add('winner');
+        }
+        return;
+    }
+
+    if (board[0][2] !== '' &&
+        board[0][2] === board[1][1] &&
+        board[1][1] === board[2][0]
+    ) {
+        for (let i=0; i < 3; i++) {
+            for (let j = 2; j <= 0; j--){
+                const cell = document.querySelector
+                    (`[data-row="${i}"][data-col="${j}"]`);
+                cell.classList.add('winner');
+            }
+        }
+        return;
+    }
+
+}
 
 document.addEventListener('DOMContentLoaded', function(){
     initializeGame();
