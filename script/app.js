@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function(){
     initializeGame();
     resetBtn.addEventListener('click', resetGame);
 
-    const helptext = this.documentElement.createElement('div');
+    const helptext = document.createElement('div');
     helptext.innerHTML = `
         <small style="color: #666; margin-top: 10px; display: block;">
             Use numbers 1-9 to play, 'R' to reset

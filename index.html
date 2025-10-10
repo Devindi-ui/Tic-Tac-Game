@@ -38,6 +38,32 @@
         </div>
     </div>
 
+    <!-- Audio elements for game sounds -->
+     <audio id="backgroundMusic">
+        <source src="sounds/background.mp3" type="audio/mpeg">
+     </audio>
+
+     <audio id="clickSound">
+        <source src="sounds/click.wav" type="audio/wav">
+     </audio>
+
+     <audio id="winSound">
+        <source src="sounds/win.wav" type="audio/wav">
+     </audio>
+
+     <audio id="loseSound">
+        <source src="sounds/lose.wav" type="audio/wav">
+     </audio>
+
+     <audio id="drawSound">
+        <source src="" type="audio/wav">
+     </audio>
+     <!-- music control btn -->
+      <div class="music-controls">
+        <button id="musicToggle" class="music-btn">🎧</button>
+      </div>
+
+    <script src="script/audio-manager.js"></script>
     <script src="script/app.js"></script>
 </body>
 </html>
