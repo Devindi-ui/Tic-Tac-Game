@@ -36,17 +36,42 @@ class AudioManager {
             if(e.target.classList.contains('cell') && !(e.target.disabled)){
                 this.playClickSound();
             }
-        })
+        });
 
         //listen for reset btn click
         document.addEventListener('click', (e) => {
             if(e.target.id === 'resetBtn'){
                 this.playClickSound();
             }
-        })
+        });
+
+        this.observerStateChange();
     }
 
-    observerState
+    observerStateChange(){
+        const statusText = document.getElementById('status-text');
+        const observer = new MutationObserver((mutation) => {
+            mutation.forEach((mutation) => {
+                if(mutation.type === 'childList' || mutation.type === 'characterData'){
+                    const text = statusText.textContent;
+
+                    if(text.includes('You Win')){
+                        this.playWinSound();
+                    } else if(text.includes('Computer Wins')) {
+                        this.playLoseSound();
+                    } else if(text,includes("It's a draw")) {
+                        this.playDrawSound();
+                    }
+                }
+            });
+        });
+
+        observer.observe(statusText, {
+            childList: true, //child elements add/remove
+            characterData: true, //text character changes
+            subtree: true
+        });
+    }
     
 
     startBackgroundMusic(){
@@ -79,6 +104,35 @@ class AudioManager {
         if(!this.isMuted){
             this.clickSound.play().catch(e=>console.log('Click sound error:', e));
         }
+    }
+
+    playWinSound(){
+        if( !this.isMuted ){
+            this.winSound.play().catch(e =>console.log('Win sound failed:', e));
+        }
+
+        //resume background music after win sound
+        setTimeout(() => {
+            this.startBackgroundMusic();
+        }, 3000);
+    }
+
+
+    playLoseSound(){
+        if( !this.isMuted ){
+            this.backgroundMusic.pause();
+            this.winSound.play().catch(e=>console.log('Lose sound failed:', e));
+        }
+        
+        //resume background music after win sound
+        setTimeout(() => {
+            this.startBackgroundMusic();
+        }, 3000);
+
+    }
+
+    playDrawSound(){
+
     }
 
 }
