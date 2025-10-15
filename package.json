@@ -1,0 +1,23 @@
+{
+    "name": "tic-tac-toe-testing",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "test:e2e": "cypress run",
+        "test:e2e:open": "cypress open",
+        "serve": "http-server -p 8080",
+        "start": "npm run serve"
+    },
+
+    "devDependencies": {
+        "jest": "^29.0.0",
+        "jest-environment-jsdom": "^29.0.0",
+        "cypress": "12.0.0",
+        "http-server": "14.1.1",
+        "@testing-library/jest-dom": "^5.16.0",
+        "lighthouse": "^10.0.0",
+        "axe-core": "^4.6.0"
+    }
+}
